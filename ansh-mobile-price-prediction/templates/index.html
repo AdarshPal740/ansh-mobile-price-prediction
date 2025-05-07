@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Price Prediction</title>
+    <style>
+        body {
+            background-color: #f0f9f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+        }
+
+        h3 {
+            color: #2e7d32;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #4caf50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        button[type="reset"] {
+            background-color: #f44336;
+            color: white;
+        }
+
+        button[type="reset"]:hover {
+            background-color: #d32f2f;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Mobile Price Prediction</h3>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="ram">RAM (in GB)</label>
+                <input type="text" id="ram" name="ram" required placeholder="e.g. 4, 6, 8">
+            </div>
+
+            <div class="form-group">
+                <label for="rom">ROM/Storage (in GB)</label>
+                <input type="text" id="rom" name="rom" required placeholder="e.g. 64, 128, 256">
+            </div>
+
+            <div class="form-group">
+                <label for="size">Screen Size (in inches)</label>
+                <input type="text" id="size" name="size" required placeholder="e.g. 5.5, 6.2, 6.7">
+            </div>
+
+            <div class="form-group">
+                <label for="back">Primary Camera (in MP)</label>
+                <input type="text" id="back" name="back" required placeholder="e.g. 12, 48, 108">
+            </div>
+
+            <div class="form-group">
+                <label for="front">Selfie Camera (in MP)</label>
+                <input type="text" id="front" name="front" required placeholder="e.g. 8, 16, 32">
+            </div>
+
+            <div class="form-group">
+                <label for="battery">Battery Capacity (in mAh)</label>
+                <input type="text" id="battery" name="battery" required placeholder="e.g. 3000, 4000, 5000">
+            </div>
+
+            <div class="button-group">
+                <button type="submit">Predict Price</button>
+                <button type="reset">Reset Form</button>
+            </div>
+        </form>
+
+        {% if sent_value %}
+        <div class="result">
+            {{ sent_value }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
